@@ -69,11 +69,8 @@ bool Plugin::run(size_t arg) {
 
             // If the operand isn't one of these types, fill the remaining portion
             // of the mask with 0.
-            if (op.type != o_reg && op.type != o_phrase) {
-                for (int k = op.offb; k < instruction.size; ++k) {
-                    instructionMask[k] = 0;
-                }
-
+            if (op.type != o_reg && op.type != o_phrase && op.type != o_displ) {
+                fill(instructionMask.begin() + op.offb, instructionMask.end(), 0);
                 break;
             }
         }
@@ -95,8 +92,6 @@ bool Plugin::run(size_t arg) {
         // Continue on to the next instruction
         offset += instruction.size;
     }
-
-    msg("\n");
 
     // Create a pattern from the bytes and mask.
     string pattern{};
