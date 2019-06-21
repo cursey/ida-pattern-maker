@@ -7,11 +7,8 @@ A simple plugin that lets you generate patterns for code in IDA 7.00.
 2) Run the plugin (hotkey is Ctrl+Alt+S by default) while the cursor is on an instruction
 3) Thats it, output will be in the console
 
-## Usage Requirements
-If you're using the precompiled binaries then you will need the __Microsoft Visual C++ Redistributable for Visual Studio 2017__ located near the bottom of [this page](https://www.visualstudio.com/downloads/).
-
 ## Build Requirements
-* IDA 7.00 SDK 
+* IDA 7.00 SDK (put idasdk70 in the project folder)
 * Visual Studio (cmake projects are currently pretty specific to VS)
 * CMake
 
