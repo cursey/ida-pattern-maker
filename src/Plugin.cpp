@@ -51,7 +51,7 @@ bool Plugin::run(size_t arg) {
 
         if (decode_insn(&instruction, address + offset) == 0) {
             msg("Failed to decode instruction @ %p!\n", address + offset);
-            return false;
+            break;
         }
 
         // Add the bytes of the instruction to the bytes of our pattern.
@@ -74,6 +74,10 @@ bool Plugin::run(size_t arg) {
                 break;
             }
         }
+
+        // First byte is always okay, sometimes the above loop will mark an entire
+        // instruction as wildcards.
+        instructionMask[0] = 1;
 
         // Copy this isntructions mask to our pattern's mask.
         copy(instructionMask.begin(), instructionMask.end(), back_inserter(mask));
